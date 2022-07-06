@@ -4,41 +4,61 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] float _speed = 5;
+    [Header("Movement")]
+    [SerializeField] float _minSpeed = 2.5f;
+    [SerializeField] float _maxSpeed = 5f;
+    [SerializeField] float _maxSpeedTime = 0.5f;
+                     float _currentMaxSpeedTimer = 0f;
+    [SerializeField] float _climbSpeed = 3f;
+    [SerializeField] float _climbHorizontalSpeed = 1.5f;
+
+    [Header("Jumping")]
     [SerializeField] float _jumpPower = 15;
     [SerializeField] float _coyoteTime = 0.2f;
-    private float _coyoteTimer;
+                     private float _coyoteTimer;
     [SerializeField] float _jumpBufferTime = 0.2f;
-    private float _jumpBufferTimer;
+                     private float _jumpBufferTimer;
+    [SerializeField][Range(0f, 1f)] float _jumpCut = 0.1f;
+    [SerializeField] float _jumpFallGravityScale = 2f;
 
-    [SerializeField] Collider2D _collider;
+    [SerializeField] Collider2D _groundCollider;
+    [SerializeField] Transform _ladderCollider;
 
 
     private Rigidbody2D _rigidBody;
     private Animator _animator;
+    private float _gravityScale;
 
     private float _horizontalMove;
+    private float _verticalMove;
 
     //Animation states
     const string PLAYER_MOVE = "Move";
     const string PLAYER_IDLE = "Idle";
-    const string PLAYER_JUMP = "";
-    const string PLAYER_FALL = "";
-    const string PLAYER_CLIMB = "";
+    const string PLAYER_JUMP = "Jump";
+    const string PLAYER_FALL = "Fall";
+    const string PLAYER_CLIMB = "LadderClimb";
+    const string PLAYER_ON_LADDER = "LadderStay";
 
     private string _currentState;
 
     private bool IsMovingHorizontal => Mathf.Abs(_horizontalMove) > float.Epsilon;
-    private bool IsFalling => _rigidBody.velocity.y < 0;
-    private bool IsJumping => _rigidBody.velocity.y > 0;
+    private bool IsFalling => _rigidBody.velocity.y < -0.1f;
+    private bool IsJumping => _rigidBody.velocity.y > 0.1f;
 
     private bool _jumpReady = true;
-    private bool _isGrounded;
-    private bool IsGrounded => _collider.IsTouchingLayers(LayerMask.GetMask("Ground"));
+    private bool IsGrounded => _groundCollider.IsTouchingLayers(LayerMask.GetMask("Ground"));
+    //ladder climb
+    private bool IsTouchingLadder => Physics2D.OverlapCircle(_ladderCollider.position, 0.3f, LayerMask.GetMask("Ladder"));
+    private bool IsClimbing => Mathf.Abs(_verticalMove) > float.Epsilon;
+
+    private bool _onLadder = false;
+
     void Start()
     {
         _animator = GetComponent<Animator>();
         _rigidBody = GetComponent<Rigidbody2D>();
+        _gravityScale = _rigidBody.gravityScale;
         Transition(PLAYER_IDLE);
     }
 
@@ -47,14 +67,92 @@ public class PlayerController : MonoBehaviour
     {
         //input check
         _horizontalMove = Input.GetAxis("Horizontal");
+        _verticalMove = Input.GetAxis("Vertical");
+        ClimbLogic();
+        JumpLogic();
+        //state check
+        Transition(SelectNextState());
 
-        if (IsGrounded)
+
+    }
+
+    private string SelectNextState()
+    {
+        //climb
+        if(_onLadder)
+        {
+            if (IsClimbing)
+            {
+                return PLAYER_CLIMB;
+            }
+            else
+            {
+                return PLAYER_ON_LADDER;
+            }
+        }
+        //jump || fall
+        if (IsFalling)
+        {
+            return PLAYER_FALL;
+        }
+        else if(IsJumping)
+        {
+            return PLAYER_JUMP;
+        }
+        //move
+        if (IsMovingHorizontal)
+        {
+            return PLAYER_MOVE;
+        }
+        else
+        {
+            return PLAYER_IDLE;
+        }
+
+    }
+
+    private void ClimbLogic()
+    {
+        //try to attach to ladder
+        if (!_onLadder)
+        {
+            if(IsTouchingLadder && IsClimbing && _jumpReady)
+            {
+                AttachToLadder();
+            }
+        }
+        //detach from ladder IF: jump or drop (raycast says FALSE)
+        else
+        {
+            if (!IsTouchingLadder)
+            {
+                DetachFromLadder();
+            }
+        }
+
+    }
+
+    private void AttachToLadder()
+    {
+        _rigidBody.gravityScale = 0;
+        _onLadder = true;
+    }
+
+    private void DetachFromLadder()
+    {
+        _rigidBody.gravityScale = _gravityScale;
+        _onLadder = false;
+    }
+
+    private void JumpLogic()
+    {
+        if (IsPlayerOnJumpingSurface())
         {
             _coyoteTimer = _coyoteTime;
         }
         else
         {
-            _coyoteTimer-= Time.deltaTime;
+            _coyoteTimer -= Time.deltaTime;
         }
 
         if (Input.GetButtonDown("Jump"))
@@ -63,7 +161,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            _jumpBufferTimer-= Time.deltaTime;
+            _jumpBufferTimer -= Time.deltaTime;
         }
 
         if (_coyoteTimer > 0 && _jumpBufferTimer > 0 && _jumpReady)
@@ -71,50 +169,90 @@ public class PlayerController : MonoBehaviour
             Jump();
             StartCoroutine(JumpCooldown());
         }
-        if (Input.GetButtonUp("Jump") && _rigidBody.velocity.y > 0f)
+        //jump cut
+        if (Input.GetButtonUp("Jump") && IsJumping)
         {
-            _rigidBody.velocity = new Vector2(_rigidBody.velocity.x, _rigidBody.velocity.y * 0.25f);
+            _rigidBody.AddForce(Vector2.down * _rigidBody.velocity.y * (1f - _jumpCut), ForceMode2D.Impulse);
+            //_rigidBody.velocity = new Vector2(_rigidBody.velocity.x, _rigidBody.velocity.y * 0.25f);
 
-            _coyoteTimer = 0f;
+            //_coyoteTimer = 0f;
         }
-        //state check
-        if (IsMovingHorizontal)
+        //extra fall gravity
+        JumpGravityLogic();
+    }
+
+    private void JumpGravityLogic()
+    {
+        if (_onLadder) return;
+        if (IsFalling)
         {
-            Transition(PLAYER_MOVE);
+            _rigidBody.gravityScale = _gravityScale * _jumpFallGravityScale;
         }
-        else
+        else if (IsGrounded)
         {
-            Transition(PLAYER_IDLE);
+            _rigidBody.gravityScale = _gravityScale;
         }
+    }
 
-
+    private bool IsPlayerOnJumpingSurface()
+    {
+        return _onLadder || IsGrounded;
     }
 
     private void MoveHorizontal()
     {
         if (IsMovingHorizontal)
         {
-            var playerMovement = new Vector2(_horizontalMove * _speed, _rigidBody.velocity.y);
+            //calculate speed
+            _currentMaxSpeedTimer += Time.deltaTime;
+            _currentMaxSpeedTimer = Mathf.Clamp(_currentMaxSpeedTimer, 0, _maxSpeedTime);
+
+            var speed = _onLadder ? _climbHorizontalSpeed : Mathf.Lerp(_minSpeed, _maxSpeed, _currentMaxSpeedTimer / _maxSpeedTime);
+            var playerMovement =  new Vector2(_horizontalMove * speed, _rigidBody.velocity.y);
             _rigidBody.velocity = playerMovement;
             Flip();
-            //Debug.Log(_rigidBody.velocity);
+        }
+        else
+        {
+            _currentMaxSpeedTimer -= Time.deltaTime;
+            _rigidBody.velocity = new Vector2(0, _rigidBody.velocity.y);
         }
     }
 
     private void Jump()
     {
         //_rigidBody.velocity = new Vector2(_rigidBody.velocity.x, _jumpPower);
+        DetachFromLadder();
+        _rigidBody.velocity = new Vector2(_rigidBody.velocity.x, 0);
         _rigidBody.AddForce(Vector2.up * _jumpPower, ForceMode2D.Impulse);
     }
+
+
 
     private void FixedUpdate()
     {
         MoveHorizontal();
+        MoveVertical();
+    }
 
+    private void MoveVertical()
+    {
+        if (!_onLadder) return;
+        if (IsClimbing)
+        {
+            var playerMovement = new Vector2(_rigidBody.velocity.x, _verticalMove * _climbSpeed);
+            _rigidBody.velocity = playerMovement;
+        }
+        else
+        {
+            var playerMovement = new Vector2(_rigidBody.velocity.x, 0);
+            _rigidBody.velocity = playerMovement;
+        }
     }
 
     private void Flip()
     {
+        if (_onLadder) return;
         var directionSign = Mathf.Sign(_horizontalMove);
         var scaleSign = Mathf.Sign(transform.localScale.x);
         if(directionSign != scaleSign)
@@ -130,22 +268,6 @@ public class PlayerController : MonoBehaviour
         _currentState = newAnimation;
         _animator.Play(newAnimation);
     }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.tag == "Wall")
-        {
-            _isGrounded = true;
-        }
-    }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.tag == "Wall")
-        {
-            _isGrounded = false;
-        }
-    }
-
     private IEnumerator JumpCooldown()
     {
         _jumpReady = false;
@@ -153,14 +275,9 @@ public class PlayerController : MonoBehaviour
         _jumpReady = true;
     }
 
-    private void PauseAnimation()
+    private void OnGUI()
     {
-        _animator.speed = 0;
-    }
-
-    private void ResumeAnimation()
-    {
-        _animator.speed = 1;
+        GUI.Label(new Rect(10, 10, 100, 200), "" + _rigidBody.velocity.x.ToString("0.00"));
     }
 
 }

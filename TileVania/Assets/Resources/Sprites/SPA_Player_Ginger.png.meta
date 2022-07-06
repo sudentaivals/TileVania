@@ -356,7 +356,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SPA_Player_Ginger_16
+      name: playerJumping
       rect:
         serializedVersion: 2
         x: 0
@@ -377,7 +377,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SPA_Player_Ginger_17
+      name: playerFalling
       rect:
         serializedVersion: 2
         x: 38
@@ -727,13 +727,13 @@ TextureImporter:
       SPA_Player_Ginger_1: 1811569457
       playerRun3: -1101156131
       SPA_Player_Ginger_2: 1126161608
+      playerFalling: 1729944642
       SPA_Player_Ginger_0: 1319704915
       playerRun8: -1132228026
-      SPA_Player_Ginger_17: 1729944642
-      playerRun5: -949487492
-      SPA_Player_Ginger_16: 1119820470
       playerClimb0: -506133630
+      playerRun5: -949487492
       playerClimb1: 480351880
+      playerJumping: 1119820470
       SPA_Player_Ginger_9: 815035474
       playerRun4: 1993313600
       playerRun7: 1422603276
