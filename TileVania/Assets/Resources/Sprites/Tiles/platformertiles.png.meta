@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: bf99176430888e8468e32c61ba9df796
+guid: 3ff2d01d5e8e7f445affc63ef9709e13
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -33,7 +33,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -104,11 +104,11 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: SPA_Rock_Grass_Water_0
+      name: platformertiles_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 190
+        y: 64
         width: 32
         height: 32
       alignment: 0
@@ -118,18 +118,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 306a18b59a655df42b93642b75347cc6
-      internalID: -1068116637
+      spriteID: 0fdc10b3bddc1d04d9473e983d9430d3
+      internalID: 254465689
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SPA_Rock_Grass_Water_1
+      name: platformertiles_1
       rect:
         serializedVersion: 2
-        x: 38
-        y: 190
+        x: 32
+        y: 64
         width: 32
         height: 32
       alignment: 0
@@ -139,18 +139,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9239747f856e6d24f962db02961db49f
-      internalID: -934939497
+      spriteID: b7b7d4b0949180e42aff18e2056b76f2
+      internalID: -173843076
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SPA_Rock_Grass_Water_2
+      name: platformertiles_2
       rect:
         serializedVersion: 2
-        x: 76
-        y: 190
+        x: 64
+        y: 64
         width: 32
         height: 32
       alignment: 0
@@ -160,18 +160,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 975daa182ea00a8418d24e25404ac244
-      internalID: 659779542
+      spriteID: abe6f114ba4ba5744bee7eaeb526b9d2
+      internalID: 119840166
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SPA_Rock_Grass_Water_3
+      name: platformertiles_3
       rect:
         serializedVersion: 2
-        x: 114
-        y: 190
+        x: 96
+        y: 64
         width: 32
         height: 32
       alignment: 0
@@ -181,18 +181,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 055c6fdadbad37848b6b6213fddf5908
-      internalID: -1891266718
+      spriteID: f3f21444fcb2aa7428b5358e46bc7728
+      internalID: 58350610
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SPA_Rock_Grass_Water_4
+      name: platformertiles_4
       rect:
         serializedVersion: 2
-        x: 152
-        y: 190
+        x: 128
+        y: 64
         width: 32
         height: 32
       alignment: 0
@@ -202,18 +202,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1a168123e83580d4b915748f992a252b
-      internalID: -677006923
+      spriteID: 0c43bbc2b681cda41a9a362b6e426617
+      internalID: -221538352
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SPA_Rock_Grass_Water_5
+      name: platformertiles_5
       rect:
         serializedVersion: 2
-        x: 0
-        y: 152
+        x: 160
+        y: 64
         width: 32
         height: 32
       alignment: 0
@@ -223,18 +223,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6b35cf42c698fdb46bff1977b4f638e7
-      internalID: 1679242919
+      spriteID: f784b6e456098fc4b8f4eb0fa070aea8
+      internalID: -126134117
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SPA_Rock_Grass_Water_6
+      name: platformertiles_6
       rect:
         serializedVersion: 2
-        x: 38
-        y: 152
+        x: 192
+        y: 64
         width: 32
         height: 32
       alignment: 0
@@ -244,18 +244,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fba7d1793243e5440858a1ffc834540a
-      internalID: 622946460
+      spriteID: ae4614a5209c17e4ba7c729cc7bdd6bc
+      internalID: 1195769011
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SPA_Rock_Grass_Water_7
+      name: platformertiles_7
       rect:
         serializedVersion: 2
-        x: 76
-        y: 152
+        x: 224
+        y: 64
         width: 32
         height: 32
       alignment: 0
@@ -265,60 +265,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 01c860cef2efe374793c1e34d6d07c13
-      internalID: -933618951
+      spriteID: c7d654f162ee4364998803b2d58f93fc
+      internalID: -1367652254
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SPA_Rock_Grass_Water_8
-      rect:
-        serializedVersion: 2
-        x: 114
-        y: 152
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0d22de69b70df7a41943bb6588ee3f61
-      internalID: 108764014
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SPA_Rock_Grass_Water_9
-      rect:
-        serializedVersion: 2
-        x: 152
-        y: 152
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0c9710c9b7604784fa3d251f43f7db9c
-      internalID: 523514148
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SPA_Rock_Grass_Water_10
+      name: platformertiles_8
       rect:
         serializedVersion: 2
         x: 0
-        y: 114
+        y: 32
         width: 32
         height: 32
       alignment: 0
@@ -328,18 +286,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4f73ceffca0f0ba44984a94d2b087f1c
-      internalID: 1304593982
+      spriteID: ffa7a53caa13d7b468802b720f88f16a
+      internalID: 1508347991
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SPA_Rock_Grass_Water_11
+      name: platformertiles_9
       rect:
         serializedVersion: 2
-        x: 38
-        y: 114
+        x: 32
+        y: 32
         width: 32
         height: 32
       alignment: 0
@@ -349,18 +307,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 55f5af53a532bb048bca7a9572cc1fc9
-      internalID: 267232620
+      spriteID: f3aabba06ebcc934585143e382b3a38e
+      internalID: 1341002604
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SPA_Rock_Grass_Water_12
+      name: platformertiles_10
       rect:
         serializedVersion: 2
-        x: 76
-        y: 114
+        x: 64
+        y: 32
         width: 32
         height: 32
       alignment: 0
@@ -370,18 +328,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cc79f6948512bb542877fc717e095bbc
-      internalID: 633254361
+      spriteID: 96b3d463472f462478b0af3ea8b485e0
+      internalID: 1271303080
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SPA_Rock_Grass_Water_13
+      name: platformertiles_11
       rect:
         serializedVersion: 2
-        x: 114
-        y: 114
+        x: 96
+        y: 32
         width: 32
         height: 32
       alignment: 0
@@ -391,18 +349,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c4a954d0588322d4b9afbf5d296b465d
-      internalID: -1187846508
+      spriteID: 58d8b671629068449ad87ea183e08cde
+      internalID: -1977217582
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SPA_Rock_Grass_Water_14
+      name: platformertiles_12
       rect:
         serializedVersion: 2
-        x: 152
-        y: 114
+        x: 128
+        y: 32
         width: 32
         height: 32
       alignment: 0
@@ -412,18 +370,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4296b49a911ccc04bbc7c81147d1147b
-      internalID: -207614882
+      spriteID: a7392faf74067414183a48a62e723b56
+      internalID: 1888920018
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SPA_Rock_Grass_Water_15
+      name: platformertiles_13
       rect:
         serializedVersion: 2
-        x: 0
-        y: 76
+        x: 160
+        y: 32
         width: 32
         height: 32
       alignment: 0
@@ -433,18 +391,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d631cc182d773c641b6670b9131aea31
-      internalID: -633069977
+      spriteID: 91225774085ca99458c789310ad8f524
+      internalID: 665465108
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SPA_Rock_Grass_Water_16
+      name: platformertiles_14
       rect:
         serializedVersion: 2
-        x: 38
-        y: 76
+        x: 192
+        y: 32
         width: 32
         height: 32
       alignment: 0
@@ -454,18 +412,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5c6c1323f24e6fb4b8902782add8a030
-      internalID: -361497373
+      spriteID: 1f509d0edc64f34499d10ac613074d61
+      internalID: -1608118364
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SPA_Rock_Grass_Water_17
+      name: platformertiles_15
       rect:
         serializedVersion: 2
-        x: 76
-        y: 76
+        x: 224
+        y: 32
         width: 32
         height: 32
       alignment: 0
@@ -475,161 +433,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f43b9f872cfc8ad43bba660a29fbbc42
-      internalID: -497225740
+      spriteID: 7f9b0819b22d93749b427d8ffe2c98b8
+      internalID: 2010494762
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SPA_Rock_Grass_Water_18
-      rect:
-        serializedVersion: 2
-        x: 114
-        y: 76
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ce1ae12d5af5b2646b5a4026775cbee6
-      internalID: 1574350560
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SPA_Rock_Grass_Water_19
-      rect:
-        serializedVersion: 2
-        x: 152
-        y: 76
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1c5943e1b9bcc49438160b3ff00c49cf
-      internalID: -1307501770
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SPA_Rock_Grass_Water_20
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 38
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5d713d41069632a4e97cc4926386b343
-      internalID: -281435727
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SPA_Rock_Grass_Water_21
-      rect:
-        serializedVersion: 2
-        x: 38
-        y: 38
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c3994e81b2dba7f469554d3ba523493f
-      internalID: 817689555
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SPA_Rock_Grass_Water_22
-      rect:
-        serializedVersion: 2
-        x: 76
-        y: 38
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ed29f9a8c1cee1b47b4aa55a591bddeb
-      internalID: -1100903436
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SPA_Rock_Grass_Water_23
-      rect:
-        serializedVersion: 2
-        x: 114
-        y: 38
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 34a1cf828dcb96c48a1ea9f4193bb02b
-      internalID: 1996890958
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SPA_Rock_Grass_Water_24
-      rect:
-        serializedVersion: 2
-        x: 152
-        y: 38
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 05b31d181c76b10428ece8abd38c0d32
-      internalID: -952232786
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SPA_Rock_Grass_Water_25
+      name: platformertiles_16
       rect:
         serializedVersion: 2
         x: 0
@@ -643,17 +454,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 681b0208ec95d11459e5905e0a6fecea
-      internalID: -1216734031
+      spriteID: bd1ef5e05db31e64cab1cceac1519a68
+      internalID: -1002317430
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SPA_Rock_Grass_Water_26
+      name: platformertiles_17
       rect:
         serializedVersion: 2
-        x: 38
+        x: 32
         y: 0
         width: 32
         height: 32
@@ -664,17 +475,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ab9cdbe5dd25cc149baa78729667f4d6
-      internalID: -490183557
+      spriteID: 30b7c90ada845df409b5dc5a028c1dc5
+      internalID: 2010993866
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SPA_Rock_Grass_Water_27
+      name: platformertiles_18
       rect:
         serializedVersion: 2
-        x: 76
+        x: 64
         y: 0
         width: 32
         height: 32
@@ -685,17 +496,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e5d7a35879de9cf49b0d54fc774792f9
-      internalID: 948366243
+      spriteID: b681b7aab5aa78b4bad8097bb87b98c9
+      internalID: -1269795000
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SPA_Rock_Grass_Water_28
+      name: platformertiles_19
       rect:
         serializedVersion: 2
-        x: 114
+        x: 96
         y: 0
         width: 32
         height: 32
@@ -706,17 +517,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8f829c7cbfb1c624fb609d393c15d220
-      internalID: -859527909
+      spriteID: a0abf93ad8c9d574bb4312962ff897d2
+      internalID: 642440042
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SPA_Rock_Grass_Water_29
+      name: platformertiles_20
       rect:
         serializedVersion: 2
-        x: 152
+        x: 128
         y: 0
         width: 32
         height: 32
@@ -727,8 +538,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a009405c1bc23074193611f87d278c30
-      internalID: -538893799
+      spriteID: 73b18b15564a0a94f87122fd134ddd24
+      internalID: 454755508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: platformertiles_21
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b8d0bab72dabb74a804dc4007d88204
+      internalID: 1962404565
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: platformertiles_22
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94e1264814507d04899d674b3b36d081
+      internalID: -970328065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: platformertiles_23
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a8398025fd7e3e40b56e02f27b20b71
+      internalID: 1029937831
       vertices: []
       indices: 
       edges: []
@@ -744,36 +618,30 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      SPA_Rock_Grass_Water_4: -677006923
-      SPA_Rock_Grass_Water_24: -952232786
-      SPA_Rock_Grass_Water_16: -361497373
-      SPA_Rock_Grass_Water_5: 1679242919
-      SPA_Rock_Grass_Water_1: -934939497
-      SPA_Rock_Grass_Water_14: -207614882
-      SPA_Rock_Grass_Water_20: -281435727
-      SPA_Rock_Grass_Water_17: -497225740
-      SPA_Rock_Grass_Water_25: -1216734031
-      SPA_Rock_Grass_Water_21: 817689555
-      SPA_Rock_Grass_Water_26: -490183557
-      SPA_Rock_Grass_Water_2: 659779542
-      SPA_Rock_Grass_Water_12: 633254361
-      SPA_Rock_Grass_Water_0: -1068116637
-      SPA_Rock_Grass_Water_9: 523514148
-      SPA_Rock_Grass_Water_29: -538893799
-      SPA_Rock_Grass_Water_6: 622946460
-      SPA_Rock_Grass_Water_18: 1574350560
-      SPA_Rock_Grass_Water_23: 1996890958
-      SPA_Rock_Grass_Water_19: -1307501770
-      SPA_Rock_Grass_Water_10: 1304593982
-      SPA_Rock_Grass_Water_15: -633069977
-      SPA_Rock_Grass_Water_22: -1100903436
-      SPA_Rock_Grass_Water_7: -933618951
-      SPA_Rock_Grass_Water_27: 948366243
-      SPA_Rock_Grass_Water_11: 267232620
-      SPA_Rock_Grass_Water_28: -859527909
-      SPA_Rock_Grass_Water_3: -1891266718
-      SPA_Rock_Grass_Water_8: 108764014
-      SPA_Rock_Grass_Water_13: -1187846508
+      platformertiles_3: 58350610
+      platformertiles_17: 2010993866
+      platformertiles_1: -173843076
+      platformertiles_20: 454755508
+      platformertiles_5: -126134117
+      platformertiles_12: 1888920018
+      platformertiles_10: 1271303080
+      platformertiles_13: 665465108
+      platformertiles_4: -221538352
+      platformertiles_16: -1002317430
+      platformertiles_18: -1269795000
+      platformertiles_7: -1367652254
+      platformertiles_2: 119840166
+      platformertiles_19: 642440042
+      platformertiles_11: -1977217582
+      platformertiles_21: 1962404565
+      platformertiles_6: 1195769011
+      platformertiles_8: 1508347991
+      platformertiles_14: -1608118364
+      platformertiles_23: 1029937831
+      platformertiles_22: -970328065
+      platformertiles_9: 1341002604
+      platformertiles_0: 254465689
+      platformertiles_15: 2010494762
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

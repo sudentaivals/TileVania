@@ -20,10 +20,18 @@ public class PlayerController : MonoBehaviour
                      private float _jumpBufferTimer;
     [SerializeField][Range(0f, 1f)] float _jumpCut = 0.1f;
     [SerializeField] float _jumpFallGravityScale = 2f;
+    [SerializeField] ParticleSystem _jumpParticle;
 
-    [SerializeField] Collider2D _groundCollider;
-    [SerializeField] Transform _ladderCollider;
+    [SerializeField] BoxCollider2D _groundCollider;
+    [SerializeField] CircleCollider2D _ladderCollider;
+    [Header("Dash")]
+    [SerializeField] float _dashPower = 10f;
+    [SerializeField] float _dashDuration = 0.3f;
+    [SerializeField] ParticleSystem _dashPartricle;
+    private bool _dashed = false;
+    private bool IsDashAvailable => !IsGrounded && !_onLadder;
 
+    private bool _isDashingNow = false;
 
     private Rigidbody2D _rigidBody;
     private Animator _animator;
@@ -43,13 +51,15 @@ public class PlayerController : MonoBehaviour
     private string _currentState;
 
     private bool IsMovingHorizontal => Mathf.Abs(_horizontalMove) > float.Epsilon;
+
+    private bool IsMaxSpeedReached => _currentMaxSpeedTimer == _maxSpeedTime;
     private bool IsFalling => _rigidBody.velocity.y < -0.1f;
     private bool IsJumping => _rigidBody.velocity.y > 0.1f;
 
     private bool _jumpReady = true;
     private bool IsGrounded => _groundCollider.IsTouchingLayers(LayerMask.GetMask("Ground"));
     //ladder climb
-    private bool IsTouchingLadder => Physics2D.OverlapCircle(_ladderCollider.position, 0.3f, LayerMask.GetMask("Ladder"));
+    private bool IsTouchingLadder => _ladderCollider.IsTouchingLayers(LayerMask.GetMask("Ladder"));  //Physics2D.OverlapCircle(_ladderCollider.position, 0.3f, LayerMask.GetMask("Ladder"));
     private bool IsClimbing => Mathf.Abs(_verticalMove) > float.Epsilon;
 
     private bool _onLadder = false;
@@ -68,18 +78,26 @@ public class PlayerController : MonoBehaviour
         //input check
         _horizontalMove = Input.GetAxis("Horizontal");
         _verticalMove = Input.GetAxis("Vertical");
-        ClimbLogic();
+        GrabLogic();
         JumpLogic();
+        DashLogic();
         //state check
         Transition(SelectNextState());
-
-
     }
+
+    private void FixedUpdate()
+    {
+        MoveHorizontal();
+        MoveVertical();
+    }
+
+
+    #region StateSelection
 
     private string SelectNextState()
     {
         //climb
-        if(_onLadder)
+        if (_onLadder)
         {
             if (IsClimbing)
             {
@@ -95,7 +113,7 @@ public class PlayerController : MonoBehaviour
         {
             return PLAYER_FALL;
         }
-        else if(IsJumping)
+        else if (IsJumping)
         {
             return PLAYER_JUMP;
         }
@@ -111,19 +129,37 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    private void ClimbLogic()
+    private void Transition(string newAnimation)
+    {
+        if (_currentState == newAnimation) return;
+        _currentState = newAnimation;
+        _animator.Play(newAnimation);
+    }
+
+
+
+    #endregion
+
+    #region Climb
+    private void GrabLogic()
     {
         //try to attach to ladder
         if (!_onLadder)
         {
-            if(IsTouchingLadder && IsClimbing && _jumpReady)
+            if (IsTouchingLadder && IsClimbing && _jumpReady)
             {
+                if (_isDashingNow)
+                {
+                    StopCoroutine(EnterDashState());
+                    StopDashing();
+                }
                 AttachToLadder();
             }
         }
         //detach from ladder IF: jump or drop (raycast says FALSE)
         else
         {
+            RemoveGravity();
             if (!IsTouchingLadder)
             {
                 DetachFromLadder();
@@ -131,18 +167,39 @@ public class PlayerController : MonoBehaviour
         }
 
     }
-
     private void AttachToLadder()
     {
-        _rigidBody.gravityScale = 0;
+        RemoveGravity();
         _onLadder = true;
     }
 
     private void DetachFromLadder()
     {
-        _rigidBody.gravityScale = _gravityScale;
+        RestoreGravity();
         _onLadder = false;
     }
+
+    #endregion
+
+    #region Jump
+
+    private void Jump()
+    {
+        //_rigidBody.velocity = new Vector2(_rigidBody.velocity.x, _jumpPower);
+        PlayDustParticle();
+        DetachFromLadder();
+        _rigidBody.velocity = new Vector2(_rigidBody.velocity.x, 0);
+        _rigidBody.AddForce(Vector2.up * _jumpPower, ForceMode2D.Impulse);
+    }
+
+    private IEnumerator JumpCooldown()
+    {
+        _jumpReady = false;
+        yield return new WaitForSeconds(0.4f);
+        _jumpReady = true;
+    }
+
+
 
     private void JumpLogic()
     {
@@ -190,7 +247,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (IsGrounded)
         {
-            _rigidBody.gravityScale = _gravityScale;
+            RestoreGravity();
         }
     }
 
@@ -199,8 +256,14 @@ public class PlayerController : MonoBehaviour
         return _onLadder || IsGrounded;
     }
 
+
+    #endregion
+
+    #region Move
+
     private void MoveHorizontal()
     {
+        if (_isDashingNow) return;
         if (IsMovingHorizontal)
         {
             //calculate speed
@@ -208,31 +271,15 @@ public class PlayerController : MonoBehaviour
             _currentMaxSpeedTimer = Mathf.Clamp(_currentMaxSpeedTimer, 0, _maxSpeedTime);
 
             var speed = _onLadder ? _climbHorizontalSpeed : Mathf.Lerp(_minSpeed, _maxSpeed, _currentMaxSpeedTimer / _maxSpeedTime);
-            var playerMovement =  new Vector2(_horizontalMove * speed, _rigidBody.velocity.y);
+            var playerMovement = new Vector2(_horizontalMove * speed, _rigidBody.velocity.y);
             _rigidBody.velocity = playerMovement;
             Flip();
         }
         else
         {
             _currentMaxSpeedTimer -= Time.deltaTime;
-            _rigidBody.velocity = new Vector2(0, _rigidBody.velocity.y);
+            if (Mathf.Abs(_rigidBody.velocity.x) < _minSpeed) _rigidBody.velocity = new Vector2(0, _rigidBody.velocity.y);
         }
-    }
-
-    private void Jump()
-    {
-        //_rigidBody.velocity = new Vector2(_rigidBody.velocity.x, _jumpPower);
-        DetachFromLadder();
-        _rigidBody.velocity = new Vector2(_rigidBody.velocity.x, 0);
-        _rigidBody.AddForce(Vector2.up * _jumpPower, ForceMode2D.Impulse);
-    }
-
-
-
-    private void FixedUpdate()
-    {
-        MoveHorizontal();
-        MoveVertical();
     }
 
     private void MoveVertical()
@@ -250,6 +297,60 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+
+    #endregion
+
+    #region Dash
+
+    private void DashLogic()
+    {
+        //if dashed = check for ground and refresh
+        if (_dashed)
+        {
+            if (IsPlayerOnJumpingSurface()) _dashed = false;
+            return;
+        }
+        //if not dashed and midair and not on ladder = use dash available
+        if (IsDashAvailable)
+        {
+            if (Input.GetButtonDown("Dash"))
+            {
+                StartCoroutine(EnterDashState());
+                Dash();
+                _dashed = true;
+            }
+        }
+    }
+
+    private void Dash()
+    {
+        PlayDashParticle();
+        _rigidBody.velocity = Vector2.zero;
+        var direction = new Vector2(transform.localScale.x, 0) * _dashPower;
+        _rigidBody.AddForce(direction, ForceMode2D.Impulse);
+    }
+
+    private IEnumerator EnterDashState()
+    {
+        _isDashingNow = true;
+        RemoveGravity();
+        yield return new WaitForSeconds(_dashDuration);
+        StopDashing();
+    }
+
+    private void StopDashing()
+    {
+        RestoreGravity();
+        StopPlayingDashParticle();
+        _rigidBody.velocity = new Vector2(0, _rigidBody.velocity.y);
+        _isDashingNow = false;
+
+
+    }
+
+
+    #endregion
+
     private void Flip()
     {
         if (_onLadder) return;
@@ -257,27 +358,40 @@ public class PlayerController : MonoBehaviour
         var scaleSign = Mathf.Sign(transform.localScale.x);
         if(directionSign != scaleSign)
         {
+            if (IsMaxSpeedReached && !IsFalling && !IsJumping)
+            {
+                PlayDustParticle();
+            }
+            _currentMaxSpeedTimer = 0;
             var oldScale = transform.localScale;
             transform.localScale = new Vector3(oldScale.x * -1, oldScale.y, oldScale.z);
         }
     }
-
-    private void Transition(string newAnimation)
+    
+    private void PlayDustParticle()
     {
-        if (_currentState == newAnimation) return;
-        _currentState = newAnimation;
-        _animator.Play(newAnimation);
-    }
-    private IEnumerator JumpCooldown()
-    {
-        _jumpReady = false;
-        yield return new WaitForSeconds(0.4f);
-        _jumpReady = true;
+        _jumpParticle?.Play();
     }
 
-    private void OnGUI()
+    private void PlayDashParticle()
     {
-        GUI.Label(new Rect(10, 10, 100, 200), "" + _rigidBody.velocity.x.ToString("0.00"));
+        _dashPartricle.transform.localScale = transform.localScale;
+        _dashPartricle.Play();
+    }
+
+    private void StopPlayingDashParticle()
+    {
+        _dashPartricle.Stop();
+    }
+
+    private void RemoveGravity()
+    {
+        _rigidBody.gravityScale = 0;
+    }
+
+    private void RestoreGravity()
+    {
+        _rigidBody.gravityScale = _gravityScale;
     }
 
 }
