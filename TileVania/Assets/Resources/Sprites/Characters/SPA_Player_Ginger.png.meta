@@ -128,7 +128,7 @@ TextureImporter:
       name: SPA_Player_Ginger_1
       rect:
         serializedVersion: 2
-        x: 38
+        x: 39
         y: 196
         width: 32
         height: 32
@@ -209,7 +209,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SPA_Player_Ginger_9
+      name: playerDeath0
       rect:
         serializedVersion: 2
         x: 0
@@ -230,7 +230,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SPA_Player_Ginger_10
+      name: playerDeath1
       rect:
         serializedVersion: 2
         x: 38
@@ -251,7 +251,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SPA_Player_Ginger_11
+      name: playerDeath2
       rect:
         serializedVersion: 2
         x: 76
@@ -272,7 +272,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SPA_Player_Ginger_12
+      name: playerDeath3
       rect:
         serializedVersion: 2
         x: 114
@@ -293,7 +293,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SPA_Player_Ginger_13
+      name: playerDeath4
       rect:
         serializedVersion: 2
         x: 152
@@ -733,25 +733,25 @@ TextureImporter:
       playerClimb0: -506133630
       playerRun5: -949487492
       playerClimb1: 480351880
+      playerDeath4: 1685922031
       playerJumping: 1119820470
-      SPA_Player_Ginger_9: 815035474
       playerRun4: 1993313600
       playerRun7: 1422603276
+      playerDeath3: -1600342019
       playerRun2: -398210206
       SPA_Player_Ginger_4: 278894335
       playerRun0: -638343637
-      SPA_Player_Ginger_10: -990598181
-      SPA_Player_Ginger_12: -1600342019
+      playerDeath0: 815035474
       playerIdle3: 1241138283
       playerIdle0: 1305876913
       SPA_Player_Ginger_18: -609846820
       playerRun1: -1323246849
-      SPA_Player_Ginger_13: 1685922031
       playerIdle1: -1280144244
       playerRun9: -1451271874
-      SPA_Player_Ginger_11: 511191598
-      playerIdle2: -298233623
       playerRun6: -801271031
+      playerIdle2: -298233623
+      playerDeath1: -990598181
+      playerDeath2: 511191598
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
