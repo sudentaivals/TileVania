@@ -10,12 +10,16 @@ public class PlayerHealthSystem : MonoBehaviour
     [SerializeField] float _killBoxHeight;
     [SerializeField] Vector2 _killBoxOffset;
     [SerializeField] LayerMask _killLayers;
+    [Header("SFX")]
+    [SerializeField] AudioClip _deathSfx;
+    [SerializeField] [Range(0f, 1f)] float _deathSfxVolume;
 
     private readonly Collider2D[] _enemyHits = new Collider2D[1];
 
     private PlayerController _pc;
     private void DeathTrigger()
     {
+        EventBus.Publish(GameplayEventType.PlaySound, this, new PlaySoundEventArgs(_deathSfxVolume, _deathSfx));
         GameManager.Instance.TriggerGameState(GameState.Lose);
     }
 

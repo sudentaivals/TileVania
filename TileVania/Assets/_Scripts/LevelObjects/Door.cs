@@ -29,13 +29,9 @@ public class Door : MonoBehaviour
         _animator.Play(OPEN_DOOR);
     }
 
-    private void TurnColliderOff()
+    private void SwitchCollider()
     {
-        GetComponent<BoxCollider2D>().enabled = false;
+        GetComponent<BoxCollider2D>().enabled = !GetComponent<BoxCollider2D>().enabled;
     }
 
-    private void TurnColliderOn()
-    {
-        GetComponent<BoxCollider2D>().enabled = true;
-    }
 }

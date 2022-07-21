@@ -11,6 +11,7 @@ public class LoseCanvas : MonoBehaviour
     [SerializeField] Transform _message;
     [SerializeField] float _activationDelay;
     [SerializeField] float _startYOffset;
+    [SerializeField] Button _firstSelectedButton;
     private float _currentDelayTimer;
     private bool _isActivating = false;
     private Vector3 _buttonsStartPos;
@@ -63,6 +64,7 @@ public class LoseCanvas : MonoBehaviour
                     var button = tr.GetComponent<Button>();
                     if (button != null) button.interactable = true;
                 }
+                _firstSelectedButton.Select();
             }
         }
     }

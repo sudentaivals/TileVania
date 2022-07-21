@@ -29,7 +29,7 @@ public class OneShotSwitch : InteractableObject
         base.Update();
         if(_currentState == SwitchState.Unpressed)
         {
-            if (IsPlayerInRange && Input.GetKeyDown(KeyCode.E))
+            if (IsPlayerInRange && Input.GetButtonDown("Interact"))
             {
                 ActionOnSwitch();
             }

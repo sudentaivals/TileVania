@@ -398,6 +398,13 @@ MonoBehaviour:
   _minSpeed: 1
   _maxSpeed: 5
   _maxSpeedTime: 0.35
+  _footstepsSfx:
+  - {fileID: 8300000, guid: 0040654696d7e1d4994fbfeb6a2ac002, type: 3}
+  - {fileID: 8300000, guid: ed0954b3399e05c40a6cfa7c2802521a, type: 3}
+  - {fileID: 8300000, guid: e4ec6dc468d39374e9a1dc4c948afee6, type: 3}
+  - {fileID: 8300000, guid: c7286b5e22ccc304e968a377abbbf183, type: 3}
+  _footstepSfxVolume: 0.3
+  _footstepDelay: 0.4
   _jumpPower: 14
   _coyoteTime: 0.15
   _jumpBufferTime: 0.2
@@ -405,11 +412,15 @@ MonoBehaviour:
   _jumpFallGravityScale: 2.25
   _jumpParticle: {fileID: 8271004241219080712, guid: 9ba365e32afce2c47921c3a63419b5e8, type: 3}
   _jumpaParticleOffset: {x: 0, y: -0.5}
+  _jumpSfx: {fileID: 8300000, guid: 4bfeaaf41b369e040b789c1fe6ba65fa, type: 3}
+  _jumpSfxVolume: 0.5
   _groundCollider: {fileID: 384866468}
   _ladderCollider: {fileID: 984022524}
   _dashPower: 7.5
   _dashDuration: 0.2
   _dashPartricle: {fileID: 6876786829747252149, guid: 3b5076ee86b0259459cc94501a9489b1, type: 3}
+  _dashSfx: {fileID: 8300000, guid: c116400d2a7c3e64d8294b825c628f16, type: 3}
+  _dashSfxVolume: 0.5
   _climbRopeSpeed: 1.5
   _ropeForce: 400
   _ropeLayer:
@@ -422,8 +433,6 @@ MonoBehaviour:
   _ladderOverheadChecker: {fileID: 328812450}
   _ladderOverheadOffset: {x: 0, y: 0.6}
   _ladderOverheadCheckerRadius: 0.2
-  _ladderOverheadCollider:
-  - {fileID: 0}
   _ladderMask:
     serializedVersion: 2
     m_Bits: 128
@@ -470,3 +479,5 @@ MonoBehaviour:
   _killLayers:
     serializedVersion: 2
     m_Bits: 3072
+  _deathSfx: {fileID: 8300000, guid: 114aac25959234f409d9ca1948a9f75d, type: 3}
+  _deathSfxVolume: 0.6

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 74d097eb2f26bbd45882166a08193cb0
+guid: 52feacc5a260d4547b16112c4c94900c
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -44,10 +44,10 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 0
+  spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 300
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -104,127 +104,85 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Switch_0
+      name: Scorpio_idle_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 336
-        width: 266
-        height: 288
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        y: 0
+        width: 48
+        height: 48
+      alignment: 9
+      pivot: {x: 0.65, y: 0.127}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8c3c6184e26aa344ba1b9c24fe6c52e8
-      internalID: 538513102
+      spriteID: a2eaa3ed3e74f9241bfc2f84d6a09fc3
+      internalID: -1592991583
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Switch_1
+      name: Scorpio_idle_1
       rect:
         serializedVersion: 2
-        x: 292
-        y: 336
-        width: 267
-        height: 288
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 48
+        y: 0
+        width: 48
+        height: 48
+      alignment: 9
+      pivot: {x: 0.65, y: 0.127}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 63a640a91d889f1419baa0aec8de615e
-      internalID: -564738170
+      spriteID: f294b7d778b4fb54e8b65b24da82be7b
+      internalID: -77377409
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Switch_2
+      name: Scorpio_idle_2
       rect:
         serializedVersion: 2
-        x: 600
-        y: 336
-        width: 266
-        height: 288
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 96
+        y: 0
+        width: 48
+        height: 48
+      alignment: 9
+      pivot: {x: 0.65, y: 0.127}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b940b37d049ab2147908c6cb2396e716
-      internalID: 1584642182
+      spriteID: f6b2552a84a33cd49a20b9262f0ed917
+      internalID: 2042879100
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Switch_3
+      name: Scorpio_idle_3
       rect:
         serializedVersion: 2
-        x: 0
-        y: 14
-        width: 266
-        height: 288
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 144
+        y: 0
+        width: 48
+        height: 48
+      alignment: 9
+      pivot: {x: 0.65, y: 0.127}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 952b48041a9be8346a29c57f12936252
-      internalID: -1052020373
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Switch_4
-      rect:
-        serializedVersion: 2
-        x: 292
-        y: 14
-        width: 266
-        height: 288
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9c14b88f95a34404cbc0d0a793a160d4
-      internalID: 1177283705
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Switch_5
-      rect:
-        serializedVersion: 2
-        x: 600
-        y: 14
-        width: 266
-        height: 288
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 111bfb860b772dc42af61bdef6cd90a9
-      internalID: -1279279424
+      spriteID: 7d252a3e71be55745a266fb3087929ad
+      internalID: -950712107
       vertices: []
       indices: 
       edges: []
@@ -240,12 +198,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Switch_4: 1177283705
-      Switch_2: 1584642182
-      Switch_5: -1279279424
-      Switch_3: -1052020373
-      Switch_0: 538513102
-      Switch_1: -564738170
+      Scorpio_idle_3: -950712107
+      Scorpio_idle_0: -1592991583
+      Scorpio_idle_1: -77377409
+      Scorpio_idle_2: 2042879100
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

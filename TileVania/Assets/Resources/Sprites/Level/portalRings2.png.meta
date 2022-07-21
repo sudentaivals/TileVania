@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 74d097eb2f26bbd45882166a08193cb0
+guid: 22a2cd738c36ea642a95b2e052b8b8a2
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -44,10 +44,10 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 0
+  spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 300
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -104,127 +104,106 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Switch_0
+      name: portalRings2_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 336
-        width: 266
-        height: 288
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8c3c6184e26aa344ba1b9c24fe6c52e8
-      internalID: 538513102
+      spriteID: 55e99aebe1130f045b4723c8765f7c00
+      internalID: 1814910553
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Switch_1
+      name: portalRings2_1
       rect:
         serializedVersion: 2
-        x: 292
-        y: 336
-        width: 267
-        height: 288
+        x: 32
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 63a640a91d889f1419baa0aec8de615e
-      internalID: -564738170
+      spriteID: b04f95e531dd25f4db14542aa1c254e7
+      internalID: 338010631
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Switch_2
+      name: portalRings2_2
       rect:
         serializedVersion: 2
-        x: 600
-        y: 336
-        width: 266
-        height: 288
+        x: 64
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b940b37d049ab2147908c6cb2396e716
-      internalID: 1584642182
+      spriteID: a54b64589a354ca439aa48c4566cb47e
+      internalID: -1899507559
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Switch_3
+      name: portalRings2_3
       rect:
         serializedVersion: 2
-        x: 0
-        y: 14
-        width: 266
-        height: 288
+        x: 96
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 952b48041a9be8346a29c57f12936252
-      internalID: -1052020373
+      spriteID: df6b8e46824b1bc4c8a4e8cb9f85b377
+      internalID: 1276801412
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Switch_4
+      name: portalRings2_4
       rect:
         serializedVersion: 2
-        x: 292
-        y: 14
-        width: 266
-        height: 288
+        x: 128
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9c14b88f95a34404cbc0d0a793a160d4
-      internalID: 1177283705
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Switch_5
-      rect:
-        serializedVersion: 2
-        x: 600
-        y: 14
-        width: 266
-        height: 288
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 111bfb860b772dc42af61bdef6cd90a9
-      internalID: -1279279424
+      spriteID: c383a569747e0434ca9da6ef8e47e442
+      internalID: 1551667183
       vertices: []
       indices: 
       edges: []
@@ -240,12 +219,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Switch_4: 1177283705
-      Switch_2: 1584642182
-      Switch_5: -1279279424
-      Switch_3: -1052020373
-      Switch_0: 538513102
-      Switch_1: -564738170
+      portalRings2_4: 1551667183
+      portalRings2_2: -1899507559
+      portalRings2_3: 1276801412
+      portalRings2_0: 1814910553
+      portalRings2_1: 338010631
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

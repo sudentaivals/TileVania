@@ -11,6 +11,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float _maxSpeed = 5f;
     [SerializeField] float _maxSpeedTime = 0.5f;
                      float _currentMaxSpeedTimer = 0f;
+    [SerializeField] List<AudioClip> _footstepsSfx;
+    [SerializeField][Range(0f, 1f)] float _footstepSfxVolume;
+    [SerializeField] float _footstepDelay;
+    private float _currentFootstepTimer = 0;
+
 
     [Header("Jumping")]
     [SerializeField] float _jumpPower = 15;
@@ -22,6 +27,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float _jumpFallGravityScale = 2f;
     [SerializeField] ParticleSystem _jumpParticle;
     [SerializeField] Vector2 _jumpaParticleOffset;
+    [SerializeField] AudioClip _jumpSfx;
+    [SerializeField][Range(0f, 1f)] float _jumpSfxVolume;
     private bool _jumpReady = true;
 
     [SerializeField] BoxCollider2D _groundCollider;
@@ -31,6 +38,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float _dashPower = 10f;
     [SerializeField] float _dashDuration = 0.3f;
     [SerializeField] ParticleSystem _dashPartricle;
+    [SerializeField] AudioClip _dashSfx;
+    [SerializeField][Range(0f,1f)] float _dashSfxVolume = 1;
     private bool _dashed = false;
     private bool IsDashAvailable => !IsGrounded && !_onLadder && !_onRope;
     private bool _isDashingNow = false;
@@ -122,6 +131,7 @@ public class PlayerController : MonoBehaviour
         {
             _horizontalMove = Input.GetAxis("Horizontal");
             _verticalMove = Input.GetAxis("Vertical");
+            FootstepSoundLogic();
             GrabLadderLogic();
             RopeLogic();
             JumpLogic();
@@ -356,6 +366,7 @@ public class PlayerController : MonoBehaviour
         //_rigidBody.velocity = new Vector2(_rigidBody.velocity.x, _jumpPower);
         PlayDustParticle();
         RestoreGravity();
+        EventBus.Publish(GameplayEventType.PlaySound, this, new PlaySoundEventArgs(_jumpSfxVolume, _jumpSfx));
         if(_onLadder) DetachFromLadder();
         if(_onRope) DetachFromRope();
         _rigidBody.velocity = new Vector2(_rigidBody.velocity.x, 0);
@@ -437,6 +448,23 @@ public class PlayerController : MonoBehaviour
 
     #region Move
 
+    private void FootstepSoundLogic()
+    {
+        _currentFootstepTimer += Time.deltaTime;
+        if (IsGrounded && IsMovingHorizontal && !IsJumping && !IsFalling)
+        {
+            PlayFootstepSound();
+        }
+    }
+    private void PlayFootstepSound()
+    {
+        if(_currentFootstepTimer >= _footstepDelay)
+        {
+            var clip = _footstepsSfx[UnityEngine.Random.Range(0, _footstepsSfx.Count)];
+            EventBus.Publish(GameplayEventType.PlaySound, this, new PlaySoundEventArgs(_footstepSfxVolume, clip));
+            _currentFootstepTimer = 0;
+        }
+    }
     private void MoveHorizontal()
     {
         if (_isDashingNow || _onRope) return;
@@ -509,9 +537,15 @@ public class PlayerController : MonoBehaviour
     private void Dash()
     {
         PlayDashParticle();
+        PlayDashSound();
         _rigidBody.velocity = Vector2.zero;
         var direction = new Vector2(transform.localScale.x, 0) * _dashPower;
         _rigidBody.AddForce(direction, ForceMode2D.Impulse);
+    }
+
+    private void PlayDashSound()
+    {
+        EventBus.Publish(GameplayEventType.PlaySound, this, new PlaySoundEventArgs(_dashSfxVolume, _dashSfx));
     }
 
     private IEnumerator EnterDashState()
