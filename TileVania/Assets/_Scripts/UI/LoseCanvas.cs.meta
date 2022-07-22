@@ -1,10 +1,9 @@
 fileFormatVersion: 2
-guid: 2f6ed829356063447983f0eb85e40263
+guid: 99b59287a2f14cc4fa6d87722ca20ce6
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences:
-  - _victorySfx: {fileID: 8300000, guid: 4cda4f0e6af9de8489ed9a6d9317d0ea, type: 3}
+  defaultReferences: []
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

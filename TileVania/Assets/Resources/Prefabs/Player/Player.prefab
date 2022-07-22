@@ -251,7 +251,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 38468594f20c48a4caf1bbcc97f2b228, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -420,7 +420,7 @@ MonoBehaviour:
   _dashDuration: 0.2
   _dashPartricle: {fileID: 6876786829747252149, guid: 3b5076ee86b0259459cc94501a9489b1, type: 3}
   _dashSfx: {fileID: 8300000, guid: c116400d2a7c3e64d8294b825c628f16, type: 3}
-  _dashSfxVolume: 0.5
+  _dashSfxVolume: 0.3
   _climbRopeSpeed: 1.5
   _ropeForce: 400
   _ropeLayer:
@@ -436,6 +436,10 @@ MonoBehaviour:
   _ladderMask:
     serializedVersion: 2
     m_Bits: 128
+  _dissolveTime: 0.5
+  _body: {fileID: 7603698993019444429}
+  _spawnSfx: {fileID: 8300000, guid: 36d7882081ccc414d8eefafc461b9381, type: 3}
+  _spawnSfxVolume: 1
 --- !u!233 &2118321024
 HingeJoint2D:
   m_ObjectHideFlags: 0

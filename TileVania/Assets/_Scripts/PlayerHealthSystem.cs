@@ -30,7 +30,7 @@ public class PlayerHealthSystem : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!_pc.IsAlive) return;
+        if (!_pc.IsUnderControl) return;
         if(Physics2D.OverlapBoxNonAlloc(_killChecker.position + (Vector3)_killBoxOffset, new Vector2(_killBoxWidth, _killBoxHeight), transform.eulerAngles.z, _enemyHits, _killLayers) > 0)
         {
             DeathTrigger();

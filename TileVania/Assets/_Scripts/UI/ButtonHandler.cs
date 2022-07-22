@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class ButtonHandler : MonoBehaviour
 {
-    [SerializeField][Range(0, 1)] float _highlightVolume;
+    [SerializeField] [Range(0, 1)] float _highlightVolume;
     [SerializeField] AudioClip _highlightClip;
 
     [SerializeField] [Range(0, 1)] float _clickVolume;

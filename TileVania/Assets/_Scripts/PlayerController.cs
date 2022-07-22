@@ -44,7 +44,6 @@ public class PlayerController : MonoBehaviour
     private bool IsDashAvailable => !IsGrounded && !_onLadder && !_onRope;
     private bool _isDashingNow = false;
     
-    //rope
     [Header("Rope")]
     [SerializeField] float _climbRopeSpeed;
     [SerializeField] float _ropeForce;
@@ -55,7 +54,8 @@ public class PlayerController : MonoBehaviour
     private HingeJoint2D _hingeJoint;
     private bool _onRope = false;
     private readonly Collider2D[] _ropeHits = new Collider2D[1];
-    
+    private bool IsTouchingRope => Physics2D.OverlapCircleNonAlloc(_ropeChecker.position, 0.25f, _ropeHits, _ropeLayer) > 0;
+
     [Header("Climbing")]
     [SerializeField] float _climbSpeed = 3f;
     [SerializeField] float _climbHorizontalSpeed = 1.5f;
@@ -63,12 +63,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Vector2 _ladderOverheadOffset;
     [SerializeField] float _ladderOverheadCheckerRadius;
     [SerializeField] LayerMask _ladderMask;
-
     Collider2D[] _ladderOverheadCollider = new Collider2D[1];
     private bool IsLadderOverhead => Physics2D.OverlapCircleNonAlloc(_ladderOverheadChecker.position + (Vector3)_ladderOverheadOffset, _ladderOverheadCheckerRadius, _ladderOverheadCollider, _ladderMask) > 0;
 
-
-    private bool IsTouchingRope => Physics2D.OverlapCircleNonAlloc(_ropeChecker.position, 0.25f, _ropeHits, _ropeLayer) > 0;
+    [Header("Level start / end")]
+    [SerializeField] float _dissolveTime = 0.5f;
+    [SerializeField] Transform _body;
+    [SerializeField] AudioClip _spawnSfx;
+    [SerializeField][Range(0f, 1f)] float _spawnSfxVolume;
+    private float _dissolveTimer = 0;
 
     private Rigidbody2D _rigidBody;
     private Animator _animator;
@@ -102,16 +105,20 @@ public class PlayerController : MonoBehaviour
     private bool _onLadder = false;
 
     private bool _isAlive = true;
-    public bool IsAlive => _isAlive;
+
+    private bool _isControlledByInput = true;
+    public bool IsUnderControl => _isControlledByInput;
 
     private void OnEnable()
     {
         EventBus.Subscribe(GameplayEventType.GameOver, KillPlayer);
+        EventBus.Subscribe(GameplayEventType.Victory, TeleportAway);
     }
 
     private void OnDisable()
     {
         EventBus.Unsubscribe(GameplayEventType.GameOver, KillPlayer);
+        EventBus.Unsubscribe(GameplayEventType.Victory, TeleportAway);
     }
 
     void Start()
@@ -121,13 +128,14 @@ public class PlayerController : MonoBehaviour
         _hingeJoint = GetComponent<HingeJoint2D>();
         _gravityScale = _rigidBody.gravityScale;
         Transition(PLAYER_IDLE);
+        Spawn();
     }
 
     // Update is called once per frame
     void Update()
     {
         //input check
-        if (_isAlive)
+        if (_isControlledByInput)
         {
             _horizontalMove = Input.GetAxis("Horizontal");
             _verticalMove = Input.GetAxis("Vertical");
@@ -143,7 +151,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!_isAlive) return;
+        if (!_isControlledByInput) return;
         //rope
         if (_onRope)
         {
@@ -568,6 +576,43 @@ public class PlayerController : MonoBehaviour
 
     #endregion
 
+    #region StartOrEndLevel
+
+    private void Spawn()
+    {
+        EventBus.Publish(GameplayEventType.PlaySound, this, new PlaySoundEventArgs(_spawnSfxVolume, _spawnSfx));
+        DisableControls();
+        RemoveGravity();
+        var coroutine = StartCoroutine(PlayerSpawnEffect());
+    }
+
+    private void TeleportAway(UnityEngine.Object o, EventArgs a)
+    {
+        _rigidBody.velocity = Vector2.zero;
+        DisableControls();
+        RemoveGravity();
+        StartCoroutine(PlayerSpawnEffect(true));
+    }
+
+    private IEnumerator PlayerSpawnEffect(bool reverse = false)
+    {
+        while (_dissolveTimer <= _dissolveTime)
+        {
+            yield return new WaitForSeconds(0.05f);
+            _dissolveTimer += 0.05f;
+            var fade = reverse ? Mathf.Lerp(1, 0, _dissolveTimer / _dissolveTime) :  Mathf.Lerp(0, 1, _dissolveTimer / _dissolveTime);
+            _body.gameObject.GetComponent<SpriteRenderer>().material.SetFloat("_Fade", fade);
+        }
+        _dissolveTimer = 0;
+        if (!reverse)
+        {
+            RestoreControls();
+            RestoreGravity();
+        }
+    }    
+
+    #endregion
+
     private void Flip()
     {
         if (_onLadder || _horizontalMove == 0) return;
@@ -622,13 +667,18 @@ public class PlayerController : MonoBehaviour
         _rigidBody.velocity = Vector2.zero;
         var direction = new Vector2(-transform.localScale.x, 1).normalized;
         _rigidBody.AddForce(direction * 10, ForceMode2D.Impulse);
+        DisableControls();
         _isAlive = false;
-        //GameplayEventBus.Publish(GameplayEventType.PlaySound, this, new PlaySoundEventArgs(1, null));
     }
 
-    private void RevivePlayer()
+    private void RestoreControls()
     {
-        _isAlive = true;
+        _isControlledByInput = true;
+    }
+
+    private void DisableControls()
+    {
+        _isControlledByInput = false;
     }
 
     private void OnDrawGizmos()

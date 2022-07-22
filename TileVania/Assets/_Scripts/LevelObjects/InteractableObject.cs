@@ -8,7 +8,7 @@ public abstract class InteractableObject : MonoBehaviour
     [SerializeField] float _playerCheckerRadius;
     [SerializeField] LayerMask _playerMask;
     [SerializeField] Vector2 _playerCheckerOffset;
-    [SerializeField] UnityEvent _onInterract;
+    [SerializeField] UnityEvent _onInteract;
     [Header("Sound")]
     [SerializeField][Range(0f, 1f)] float _sfxVolume = 1f;
     [SerializeField] AudioClip _clip;
@@ -44,9 +44,9 @@ public abstract class InteractableObject : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position + (Vector3)_playerCheckerOffset, _playerCheckerRadius);
     }
 
-    protected void Interract()
+    protected void Interact()
     {
-        _onInterract?.Invoke();
+        _onInteract?.Invoke();
         EventBus.Publish(GameplayEventType.PlaySound, this, new PlaySoundEventArgs(_sfxVolume, _clip));
     }
 }

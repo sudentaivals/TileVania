@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class GameManager : SingletonInstance<GameManager>
 {
+    [SerializeField] AudioClip _victorySfx;
+    [SerializeField] [Range(0f, 1f)] float _victorySfxVolume = 1f;
+
     void Start()
     {
         TriggerGameState(GameState.Play);
@@ -23,11 +26,17 @@ public class GameManager : SingletonInstance<GameManager>
                 EventBus.Publish(GameplayEventType.GameOver, this, null);
                 break;
             case GameState.Victory:
-
+                EventBus.Publish(GameplayEventType.PlaySound, this, new PlaySoundEventArgs(_victorySfxVolume, _victorySfx));
+                EventBus.Publish(GameplayEventType.Victory, this, null);
                 break;
             default:
                 break;
         }
+    }
+
+    public void Win()
+    {
+        TriggerGameState(GameState.Victory);
     }
 }
 

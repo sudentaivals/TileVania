@@ -18,7 +18,7 @@ public class OneShotSwitch : InteractableObject
     }
     public void ActionOnSwitch()
     {
-        Interract();
+        Interact();
         _sr.sprite = _pressedSprite;
         _currentState = SwitchState.Pressed;
 
