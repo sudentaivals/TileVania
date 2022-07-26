@@ -20,4 +20,29 @@ public class ButtonHandler : MonoBehaviour
         EventBus.Publish(GameplayEventType.PlaySound, this, new PlaySoundEventArgs(_clickVolume, _clickClip));
     }
 
+    public void RestartLevel()
+    {
+        SceneLoader.Instance.RestartScene();
+    }
+
+    public void LoadNextLevel()
+    {
+        SceneLoader.Instance.LoadNextScene();
+    }
+
+    public void LoadMainMenu()
+    {
+        SceneLoader.Instance.LoadMainMenu();
+    }
+
+    public void ResumeGame()
+    {
+        GameManager.Instance.TriggerGameState(GameState.Play);
+    }
+
+    public void PauseGame()
+    {
+        GameManager.Instance.TriggerGameState(GameState.Pause);
+    }
+
 }

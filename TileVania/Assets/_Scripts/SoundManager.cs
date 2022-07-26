@@ -42,39 +42,43 @@ public class SoundManager : SingletonInstance<SoundManager>
         _audioSources = new List<AudioSource>();
         for (int i = 0; i < 5; i++)
         {
-            AddNewSource();
+            AddSoundSource();
         }
         SoundVolume = PlayerPrefsController.SfxVolume;
+    }
+
+    private AudioSource AddSoundSource()
+    {
+        var go = new GameObject();
+        go.transform.parent = transform;
+        var audioSource = go.AddComponent<AudioSource>();
+        audioSource.playOnAwake = false;
+        _audioSources.Add(audioSource);
+        return audioSource;
+
     }
 
     private void PlaySound(UnityEngine.Object sender, EventArgs args)
     {
         var soundArgs = args as PlaySoundEventArgs;
         if (soundArgs.Clip == null) return;
-        var availableSources = _audioSources.FirstOrDefault(a => !a.isPlaying);
-        if (availableSources == null)
+        var availableSource = _audioSources.FirstOrDefault(a => !a.isPlaying);
+        var pos = sender as Component;
+        if (availableSource == null)
         {
-            var newSource = AddNewSource();
+            var newSource = AddSoundSource();
+            newSource.transform.position = pos.transform.position;
             newSource.clip = soundArgs.Clip;
             newSource.volume = soundArgs.Volume * SoundVolume;
             newSource.Play();
         }
         else
         {
-            availableSources.clip = soundArgs.Clip;
-            availableSources.volume = soundArgs.Volume * SoundVolume;
-            availableSources.Play();
+            availableSource.transform.position = pos.transform.position;
+            availableSource.clip = soundArgs.Clip;
+            availableSource.volume = soundArgs.Volume * SoundVolume;
+            availableSource.Play();
         }
 
     }
-
-    private AudioSource AddNewSource()
-    {
-        var newAudioSource = gameObject.AddComponent<AudioSource>();
-        newAudioSource.playOnAwake = false;
-        newAudioSource.volume = SoundVolume;
-        _audioSources.Add(newAudioSource);
-        return newAudioSource;
-    }
-
 }

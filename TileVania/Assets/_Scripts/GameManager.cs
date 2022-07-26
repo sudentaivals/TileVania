@@ -18,9 +18,11 @@ public class GameManager : SingletonInstance<GameManager>
         {
             case GameState.Play:
                 Time.timeScale = 1f;
+                EventBus.Publish(GameplayEventType.Unpause, this, new System.EventArgs());
                 break;
             case GameState.Pause:
                 Time.timeScale = 0f;
+                EventBus.Publish(GameplayEventType.Pause, this, new System.EventArgs());
                 break;
             case GameState.Lose:
                 EventBus.Publish(GameplayEventType.GameOver, this, null);

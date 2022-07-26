@@ -5,13 +5,16 @@ using UnityEngine.UI;
 
 public class WinCanvas : CanvasPresent
 {
-    private void OnEnable()
+    protected override void OnEnable()
     {
+        base.OnEnable();
         EventBus.Subscribe(GameplayEventType.Victory, ActivateCanvas);
+        
     }
 
-    private void OnDisable()
+    protected override void OnDisable()
     {
+        base.OnDisable();
         EventBus.Unsubscribe(GameplayEventType.Victory, ActivateCanvas);
     }
 

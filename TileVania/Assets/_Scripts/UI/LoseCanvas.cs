@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class LoseCanvas : CanvasPresent
 {
-    private void OnEnable()
+    protected override void OnEnable()
     {
+        base.OnEnable();
         EventBus.Subscribe(GameplayEventType.GameOver, ActivateCanvas);
     }
 
-    private void OnDisable()
+    protected override void OnDisable()
     {
+        base.OnDisable();
         EventBus.Unsubscribe(GameplayEventType.GameOver, ActivateCanvas);
     }
 

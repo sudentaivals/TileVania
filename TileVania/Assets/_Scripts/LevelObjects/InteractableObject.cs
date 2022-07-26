@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,6 +16,8 @@ public abstract class InteractableObject : MonoBehaviour
     [SerializeField] Material _material;
     private Collider2D[] _playerCollision = new Collider2D[1];
 
+    protected bool _isActive = true;
+
     private Material _materialClone;
     protected bool IsPlayerInRange => Physics2D.OverlapCircleNonAlloc(transform.position, _playerCheckerRadius, _playerCollision, _playerMask) > 0;
 
@@ -24,9 +27,19 @@ public abstract class InteractableObject : MonoBehaviour
         GetComponent<SpriteRenderer>().material = _materialClone;
     }
 
+    private void OnEnable()
+    {
+        EventBus.Subscribe(GameplayEventType.GameOver, StopInteracting);
+    }
+
+    private void OnDisable()
+    {
+        EventBus.Unsubscribe(GameplayEventType.GameOver, StopInteracting);
+    }
+
     protected virtual void Update()
     {
-        if (IsPlayerInRange)
+        if (IsPlayerInRange && _isActive)
         {
             _materialClone.SetFloat("_Thickness", 5);
         }
@@ -36,6 +49,10 @@ public abstract class InteractableObject : MonoBehaviour
         }
     }
 
+    private void StopInteracting(UnityEngine.Object sender, EventArgs args)
+    {
+        _isActive = false;
+    }
 
     protected virtual void OnDrawGizmos()
     {
@@ -46,6 +63,7 @@ public abstract class InteractableObject : MonoBehaviour
 
     protected void Interact()
     {
+        if (!_isActive) return;
         _onInteract?.Invoke();
         EventBus.Publish(GameplayEventType.PlaySound, this, new PlaySoundEventArgs(_sfxVolume, _clip));
     }

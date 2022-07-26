@@ -5,7 +5,10 @@ using UnityEngine;
 public enum GameplayEventType
 {
     GameOver,
+    Pause,
+    Unpause,
     Restart,
     Victory,
-    PlaySound
+    PlaySound,
+    LevelLoading
 }
