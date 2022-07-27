@@ -9,7 +9,7 @@ public class Saw : MonoBehaviour
     [SerializeField] Transform _waypoints;
     [SerializeField] float _speed;
     [SerializeField] float _rotationSpeed;
-    [SerializeField] bool _movingRight;
+    private bool _reverse = false;
 
     private List<Vector3> _concreteWaypoints;
     private int _currentWaypointIndex;
@@ -17,7 +17,7 @@ public class Saw : MonoBehaviour
     private void Start()
     {
         GenerateWaypoints();
-        _currentWaypointIndex = _movingRight ? 0 : _concreteWaypoints.Count - 1;
+        _currentWaypointIndex = 0;
     }
 
     private void GenerateWaypoints()
@@ -31,24 +31,26 @@ public class Saw : MonoBehaviour
 
     private void Update()
     {
-        transform.Rotate(0, 0, _movingRight ? _rotationSpeed * Time.deltaTime : -_rotationSpeed * Time.deltaTime);
+        transform.Rotate(0, 0, _reverse ? _rotationSpeed * Time.deltaTime : -_rotationSpeed * Time.deltaTime);
         transform.position = Vector2.MoveTowards(transform.position, _concreteWaypoints[_currentWaypointIndex], _speed * Time.deltaTime);
         if (transform.position == _concreteWaypoints[_currentWaypointIndex])
         {
-            if (_movingRight)
+            if (_reverse)
             {
-                _currentWaypointIndex++;
-                if (_currentWaypointIndex == _concreteWaypoints.Count)
+                _currentWaypointIndex--;
+                if (_currentWaypointIndex < 0)
                 {
                     _currentWaypointIndex = 0;
+                    _reverse = false;
                 }
             }
             else
             {
-                _currentWaypointIndex--;
-                if(_currentWaypointIndex < 0)
+                _currentWaypointIndex++;
+                if (_currentWaypointIndex >= _concreteWaypoints.Count)
                 {
                     _currentWaypointIndex = _concreteWaypoints.Count - 1;
+                    _reverse = true;
                 }
             }
         }

@@ -43,6 +43,17 @@ public class PlayerPrefsController
         PlayerPrefs.SetFloat(SFX_VOLUME_KEY, checkedValue);
     }
 
+    public static void IncreaseDeathCounter(string levelKey)
+    {
+        var newValue = GetDeathCounter(levelKey);
+        PlayerPrefs.SetInt(levelKey, newValue + 1);
+    }
+
+    public static int GetDeathCounter(string levelKey)
+    {
+        return PlayerPrefs.GetInt(levelKey);
+    }
+
     public static void SetMusicVolume(float volumeValue)
     {
         var checkedValue = Mathf.Clamp(volumeValue, MIN_VOLUME, MAX_VOLUME);

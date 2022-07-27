@@ -46,8 +46,8 @@ public class Guillotine : MonoBehaviour
 
 
         var point = transform.position + new Vector3(0, -(_chainHeight + 1), 0);
-        Gizmos.DrawLine(transform.position, point.RotateAroundPoint(transform.position, new Vector3(0, 0, _chain.GetComponent<HingeJoint2D>().limits.min)));
-        Gizmos.DrawLine(transform.position, point.RotateAroundPoint(transform.position, new Vector3(0, 0, _chain.GetComponent<HingeJoint2D>().limits.max)));
+        Gizmos.DrawLine(transform.position, point.RotateAroundPoint(transform.position, new Vector3(0, 0, _minAngle)));
+        Gizmos.DrawLine(transform.position, point.RotateAroundPoint(transform.position, new Vector3(0, 0, _maxAngle)));
         Gizmos.DrawWireCube(transform.position + new Vector3(0, -_chainHeight / 2), new Vector3(_chainWidth, _chainHeight));
         Gizmos.DrawWireSphere(transform.position - new Vector3(0, _chainHeight + 1f), 1f); 
     }
