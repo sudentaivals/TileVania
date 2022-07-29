@@ -14,7 +14,7 @@ public class SceneLoader : SingletonInstance<SceneLoader>
     {
         LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
-    private async void LoadScene(int sceneIndex)
+    public async void LoadScene(int sceneIndex)
     {
         EventBus.Publish(GameplayEventType.LevelLoading, this, new System.EventArgs());
         var scene = SceneManager.LoadSceneAsync(sceneIndex);
@@ -25,7 +25,9 @@ public class SceneLoader : SingletonInstance<SceneLoader>
         do
         {
             _progressBar.fillAmount = scene.progress;
-        } while (scene.progress < 0.9f);
+        } 
+        while (scene.progress < 0.9f);
+
         _progressBar.fillAmount = 1.0f;
         await Task.Delay(250);
         scene.allowSceneActivation = true;
@@ -35,13 +37,13 @@ public class SceneLoader : SingletonInstance<SceneLoader>
     public void LoadNextScene()
     {
         var currentIndex = SceneManager.GetActiveScene().buildIndex;
-        if (currentIndex >= SceneManager.sceneCount - 1)
+        if (currentIndex == SceneManager.sceneCountInBuildSettings - 1)
         {
             LoadMainMenu();
         }
         else
         {
-            LoadScene(currentIndex+1);
+            LoadScene(currentIndex + 1);
         }
     }
 

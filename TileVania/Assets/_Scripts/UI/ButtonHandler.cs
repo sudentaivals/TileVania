@@ -20,6 +20,11 @@ public class ButtonHandler : MonoBehaviour
         EventBus.Publish(GameplayEventType.PlaySound, this, new PlaySoundEventArgs(_clickVolume, _clickClip));
     }
 
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
+
     public void RestartLevel()
     {
         SceneLoader.Instance.RestartScene();

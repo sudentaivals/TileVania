@@ -483,5 +483,9 @@ MonoBehaviour:
   _killLayers:
     serializedVersion: 2
     m_Bits: 3072
-  _deathSfx: {fileID: 8300000, guid: 114aac25959234f409d9ca1948a9f75d, type: 3}
+  _deathSfx:
+  - {fileID: 8300000, guid: e10dac774f33dc549a987b85b3c0f2fd, type: 3}
+  - {fileID: 8300000, guid: 114aac25959234f409d9ca1948a9f75d, type: 3}
+  - {fileID: 8300000, guid: 01048ddd8f887e34a8568d9226ebc481, type: 3}
+  - {fileID: 8300000, guid: 819a23f69792ccb41905c3749468b53b, type: 3}
   _deathSfxVolume: 0.6

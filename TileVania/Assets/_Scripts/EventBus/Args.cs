@@ -15,3 +15,19 @@ public class PlaySoundEventArgs : EventArgs
         Clip = clip;
     }
 }
+
+public class SaveLevelDataEventArgs : EventArgs
+{
+    public float Time { get; }
+
+    public int Deaths { get; }
+
+    public bool IsCompleted { get; }
+
+    public SaveLevelDataEventArgs(float time, int deaths, bool isCompleted)
+    {
+        Time = time;
+        Deaths = deaths;
+        IsCompleted = isCompleted;
+    }
+}
