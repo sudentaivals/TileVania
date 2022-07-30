@@ -16,6 +16,8 @@ public class PlayerHealthSystem : MonoBehaviour
 
     private readonly Collider2D[] _enemyHits = new Collider2D[1];
 
+    private bool IsTouchEnemyOrTrap => Physics2D.BoxCast((Vector2)_killChecker.position + _killBoxOffset, new Vector2(_killBoxWidth, _killBoxHeight), 0, Vector2.zero, 0f, _killLayers).collider != null;
+
     private PlayerController _pc;
     private void DeathTrigger()
     {
@@ -37,10 +39,14 @@ public class PlayerHealthSystem : MonoBehaviour
     private void FixedUpdate()
     {
         if (!_pc.IsUnderControl) return;
-        if(Physics2D.OverlapBoxNonAlloc(_killChecker.position + (Vector3)_killBoxOffset, new Vector2(_killBoxWidth, _killBoxHeight), transform.eulerAngles.z, _enemyHits, _killLayers) > 0)
+        if (IsTouchEnemyOrTrap)
         {
             DeathTrigger();
         }
+        /*if(Physics2D.OverlapBoxNonAlloc(_killChecker.position + (Vector3)_killBoxOffset, new Vector2(_killBoxWidth, _killBoxHeight), transform.eulerAngles.z, _enemyHits, _killLayers) > 0)
+        {
+            DeathTrigger();
+        }*/
     }
 
     private void OnDrawGizmos()

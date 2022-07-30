@@ -600,7 +600,7 @@ MonoBehaviour:
   - {fileID: 5541170812800668012}
   _lerpingAlphas:
   - {fileID: 5541170811245005091}
-  _activationDelay: 1.5
+  _activationDelay: 0.5
   _lerpOffset: {x: 0, y: 300, z: 0}
   _firstSelectedButton: {fileID: 5541170812265009158}
 --- !u!1 &5541170812115673974

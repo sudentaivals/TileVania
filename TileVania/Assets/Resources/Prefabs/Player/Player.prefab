@@ -294,10 +294,10 @@ GameObject:
   - component: {fileID: 7603698993259001058}
   - component: {fileID: 7603698993259001059}
   - component: {fileID: 233775683}
-  - component: {fileID: 233775682}
   - component: {fileID: 233775684}
   - component: {fileID: 2118321024}
   - component: {fileID: 2118321020}
+  - component: {fileID: 2118321023}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -367,22 +367,6 @@ Rigidbody2D:
   m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!70 &233775682
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7603698993259000988}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.022675276, y: -0.030897617}
-  m_Size: {x: 0.52761984, y: 0.93465877}
-  m_Direction: 0
 --- !u!114 &233775684
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -489,3 +473,29 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 01048ddd8f887e34a8568d9226ebc481, type: 3}
   - {fileID: 8300000, guid: 819a23f69792ccb41905c3749468b53b, type: 3}
   _deathSfxVolume: 0.6
+--- !u!61 &2118321023
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7603698993259000988}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.025121689, y: -0.03916645}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.53525925, y: 0.9066706}
+  m_EdgeRadius: 0

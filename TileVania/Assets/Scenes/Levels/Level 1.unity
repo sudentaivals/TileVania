@@ -2672,8 +2672,8 @@ Tilemap:
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Origin: {x: -8, y: -9, z: 0}
-  m_Size: {x: 22, y: 11, z: 1}
+  m_Origin: {x: -12, y: -9, z: 0}
+  m_Size: {x: 26, y: 11, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
   m_TileOrientation: 0
   m_TileOrientationMatrix:
@@ -16741,6 +16741,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 362202076}
     m_Modifications:
+    - target: {fileID: 384866468, guid: ea1cc2c96ad747e4ea02ae6aa95484ff, type: 3}
+      propertyPath: m_Size.y
+      value: 0.0477643
+      objectReference: {fileID: 0}
+    - target: {fileID: 384866468, guid: ea1cc2c96ad747e4ea02ae6aa95484ff, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.465966
+      objectReference: {fileID: 0}
+    - target: {fileID: 2118321023, guid: ea1cc2c96ad747e4ea02ae6aa95484ff, type: 3}
+      propertyPath: m_Size.x
+      value: 0.47106552
+      objectReference: {fileID: 0}
+    - target: {fileID: 2118321023, guid: ea1cc2c96ad747e4ea02ae6aa95484ff, type: 3}
+      propertyPath: m_Size.y
+      value: 0.89144325
+      objectReference: {fileID: 0}
+    - target: {fileID: 2118321023, guid: ea1cc2c96ad747e4ea02ae6aa95484ff, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.031999588
+      objectReference: {fileID: 0}
+    - target: {fileID: 2118321023, guid: ea1cc2c96ad747e4ea02ae6aa95484ff, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.03155279
+      objectReference: {fileID: 0}
     - target: {fileID: 7603698993259000988, guid: ea1cc2c96ad747e4ea02ae6aa95484ff, type: 3}
       propertyPath: m_Name
       value: Player
