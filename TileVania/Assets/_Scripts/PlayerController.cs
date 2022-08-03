@@ -109,6 +109,11 @@ public class PlayerController : MonoBehaviour
     private bool _isControlledByInput = true;
     public bool IsUnderControl => _isControlledByInput;
 
+    //grounding
+
+    private bool _isPushing = false;
+
+
     private void OnEnable()
     {
         EventBus.Subscribe(GameplayEventType.GameOver, KillPlayer);
@@ -475,7 +480,7 @@ public class PlayerController : MonoBehaviour
     }
     private void MoveHorizontal()
     {
-        if (_isDashingNow || _onRope) return;
+        if (_isDashingNow || _onRope || _isPushing) return;
         if (IsMovingHorizontal)
         {
             //calculate speed
@@ -671,16 +676,37 @@ public class PlayerController : MonoBehaviour
         _isAlive = false;
     }
 
-    private void RestoreControls()
+    public void RestoreControls()
     {
         _isControlledByInput = true;
     }
 
-    private void DisableControls()
+    public void DisableControls()
     {
         _isControlledByInput = false;
     }
 
+    public void PushForConcreteTime(float time)
+    {
+        StartCoroutine(PushForTime(time));
+    }
+
+    private IEnumerator PushForTime(float pushTime)
+    {
+        StartPushing();
+        yield return new WaitForSeconds(pushTime);
+        StopPushing();
+    }
+
+    public void StartPushing()
+    {
+        _isPushing = true;
+    }
+
+    public void StopPushing()
+    {
+        _isPushing = false;
+    }
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;

@@ -25,13 +25,15 @@ public class ParabolaBuilder
         secondMatrix[1, 0] = p2.y;
         secondMatrix[2, 0] = p3.y;
 
+
         var result = matrix.Inverse().Multiply(secondMatrix);
+
         //calculate step
-        float step = Mathf.Abs(p1.x - p3.x) / (float)precision;
         List<Vector2> points = new List<Vector2>();
         for (int i = 1; i <= precision; i++)
         {
-            float x = p1.x + i * step;
+            float x = Mathf.Lerp(p1.x, p3.x, i / (float)precision);
+            //float x = p1.x + i * step;
             float y = x * x * result[0, 0] + x * result[1, 0] + result[2, 0];
             points.Add(new Vector2(x, y));
         }
