@@ -501,7 +501,7 @@ public class PlayerController : MonoBehaviour
 
     private void MoveVertical()
     {
-        if (!_onLadder) return;
+        if (!_onLadder || _isPushing) return;
         if (IsClimbing)
         {
             if(_verticalMove > 0 && !IsLadderOverhead)

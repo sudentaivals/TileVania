@@ -127,7 +127,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   _explosionSfx: {fileID: 8300000, guid: 365c6163d55f10a408f7485df29fd8c2, type: 3}
-  _explosionSfxVolume: 1
+  _explosionSfxVolume: 0.5
 --- !u!58 &4801694152975354037
 CircleCollider2D:
   m_ObjectHideFlags: 0
