@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 328812450}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: LadderOverheadChecker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 384866467}
   - component: {fileID: 384866468}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: GroundCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,7 +98,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1167601622}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: RopeChecker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,7 +129,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1396532598}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: KillChecker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -161,7 +161,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1982391115}
   - component: {fileID: 984022524}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: LadderCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -209,7 +209,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7603698993019444429}
   - component: {fileID: 7603698993019444428}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -462,8 +462,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _killChecker: {fileID: 1396532598}
   _killBoxWidth: 0.5
-  _killBoxHeight: 0.88
-  _killBoxOffset: {x: -0.03, y: -0.02}
+  _killBoxHeight: 0.91
+  _killBoxOffset: {x: -0.03, y: -0.03}
   _killLayers:
     serializedVersion: 2
     m_Bits: 3072

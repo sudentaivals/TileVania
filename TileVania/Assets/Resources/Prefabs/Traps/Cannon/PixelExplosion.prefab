@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _collider: {fileID: 4801694152975354037}
-  _knockbackRadius: 5
+  _knockbackRadius: 4
   _explosionRadius: 1
   _knockbackForce: 30
   _affectedObjects:
